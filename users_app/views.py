@@ -10,7 +10,7 @@ def registration(request):
         registration_form = CustomRegistartionForm(request.POST)
         if registration_form.is_valid():
             registration_form.save()
-            messages.success(request,("success. Login to Proceed"))
+            messages.success(request,("success.Click Login to Proceed"))
             return redirect('registration')
         else:
             messages.error(request, "Form submission failed. Please correct errors.")
