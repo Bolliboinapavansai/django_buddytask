@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block title%}
+    <title>
+        Buddytask-Home
+    </title>
+{% endblock title%}
+
+{% block content%}
+    <div class = container>
+        <div class ="row mt-5">
+            <h3>{{welcome_text}}</h3>
+        </div>
+        <div class = "row mt-10">
+            <div class = "col-lg-4">
+                <img src= "{% static 'images/home1.jpg'%}" alt="Notes"class = "rounded-lg shadow-sm" width=360 height=250>
+            </div>
+            <div class = "col-lg-4">
+                <img src= "{% static 'images/home2.jpg'%}" alt="Notes"class = "rounded-lg shadow-sm" width=360 height=250>
+            </div>
+            <div class = "col-lg-4">
+                <img src= "{% static 'images/home3.jpg'%}" alt="Notes"class = "rounded-lg shadow-sm" width=360 height=250>
+            </div>
+        </div>
+        <div class = "row mt-5 col-md-6 offset-md-3">
+            <center><p class ="h2 text-primary" > Anywhere, Any Time, Quick and easy</P></center>
+                <center><p class ="h3 text-info-emphasis"> Make your life easy with Buddymate</P></center>
+                    <center><p class ="h5 text-warning-emphasis">Best Task Managing APP (Login to proceed)</p></center>
+                    {% if user.is_authenticated%}
+                
+                    <center><a href="{% url 'tasklist' %}"><button type="button" class="btn btn-primary btn-lg mt-3 shadow">Lets get Started</button></a></center>
+                    {% endif %}
+        </div>
+    </div>
+{% endblock content %} 

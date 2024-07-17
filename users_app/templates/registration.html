@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>User Registration</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h2>Register in Buddy Mate</h2>
+    <br>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    {% endif %}
+    
+    <form method="POST" class="mt-5 col-6">
+        {% csrf_token %}
+        
+        {{ registration_form|crispy}}
+        
+        <button type="submit" class="btn btn-primary mb-5">Register</button>
+    </form>
+</div>
+{% endblock content %}
+
