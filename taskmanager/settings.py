@@ -85,13 +85,11 @@ WSGI_APPLICATION = 'taskmanager.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "OPTIONS": {
-            "NAME": env("DJANGO_DB_NAME"),
-            "USER": env("DJANGO_DB_USER"),
-            "PASSWORD":env("DJANGO_DB_USER_PSWD"),
-            "HOST":env("DJANGO_HOST"),
-            "PORT":env("DJANGO_PORT"),
-        },
+        "NAME": env("DJANGO_DB_NAME"),
+        "USER": env("DJANGO_DB_USER"),
+        "PASSWORD": env("DJANGO_DB_USER_PSWD"),
+        "HOST": env("DJANGO_HOST"),
+        "PORT": env("DJANGO_PORT"),
     }
 }
 
