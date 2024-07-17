@@ -22,7 +22,7 @@ DEBUG = env('DJANGO_DEBUG')
 
 ALLOWED_HOSTS = ["localhost","127.0.0.1", "buddytask.up.railway.app"]
 
-CSRF_TRUSTED_ORIGINS=["buddytask.up.railway.app"]
+CSRF_TRUSTED_ORIGINS=["https://buddytask.up.railway.app"]
 
 
 # Application definition
