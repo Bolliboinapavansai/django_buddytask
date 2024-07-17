@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class TaskList(models.Model):
     id = models.AutoField(primary_key=True)
     manage = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    task = models.CharField(max_length=50)
+    task = models.CharField(max_length=500)
     status = models.BooleanField(default=False)
 
     class Meta:
