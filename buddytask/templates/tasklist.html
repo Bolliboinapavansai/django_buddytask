@@ -19,7 +19,17 @@
 
         {%endfor%}
 {% endif %}
-
+{% comment %} <form method="GET" action="" class="row g-3 align-items-center mb-3">
+    <div class="col-lg-8 col-md-8">
+        <input type="text" name="q" class="form-control" placeholder="Search tasks" value="{{ request.GET.q }}">
+    </div>
+    <div class="col-lg-2 col-md-2">
+        <button type="submit" class="btn btn-secondary w-100">Search</button>
+    </div>
+    <div class="col-lg-2 col-md-2">
+        <a href="{% url 'tasklist' %}" class="btn btn-primary w-100">Reset</a>
+    </div>
+</form>
 <form method="POST" class="row g-3 align-items-center">
     {% csrf_token %}
     <div class="col-lg-4 col-md-4">
@@ -31,7 +41,54 @@
     <div class="col-lg-2 col-md-2">
         <button type="submit" class="btn btn-primary w-100">Add Task</button>
     </div>
-</form>
+</form> {% endcomment %}
+ 
+ {% comment %}  Adding search feature  {% endcomment %}
+<!-- Add this CSS for custom teal color -->
+<style>
+    .btn-teal {
+        background-color: #20c997;
+        color: white;
+    }
+
+    .btn-teal:hover {
+        background-color: #17a589;
+    }
+</style>
+
+<div class="row g-3 align-items-start mb-3">
+    <!-- Search and Reset Form -->
+    <div class="col-lg-6 col-md-6">
+        <form method="GET" action="" class="row g-3">
+            <div class="col-12">
+                <input type="text" name="q" class="form-control" placeholder="Search tasks" value="{{ request.GET.q }}">
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <button type="submit" class="btn btn-teal w-100">Search</button>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <a href="{% url 'tasklist' %}" class="btn btn-danger w-100">Reset</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Add Task Form -->
+    <div class="col-lg-6 col-md-6">
+        <form method="POST" class="row g-3">
+            {% csrf_token %}
+            <div class="col-12">
+                <input type="text" id="task" class="form-control" name="task" placeholder="Enter new task">
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <button type="submit" class="btn btn-primary w-100">Add Task</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
 
 
 <br>

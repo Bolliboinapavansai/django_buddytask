@@ -7,22 +7,47 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
 @login_required
 def tasklist(request):
-    if request.method =="POST":
-        form = TaskForm(request.POST or None) 
+    query = request.GET.get('q')  # Get the search query from the GET request
+    
+    if request.method == "POST":
+        form = TaskForm(request.POST or None)
         if form.is_valid():
-            form.save(commit=False).manage= request.user
+            form.save(commit=False).manage = request.user
             form.save()
-            messages.success(request,("Task Added"))
+            messages.success(request, "Task Added")
         return redirect(tasklist)
     else:
-        all_tasks = TaskList.objects.filter(manage=request.user)
-        pagiantor = Paginator(all_tasks, 5)
+        # Filter tasks based on the search query
+        if query:
+            all_tasks = TaskList.objects.filter(manage=request.user, task__icontains=query)
+        else:
+            all_tasks = TaskList.objects.filter(manage=request.user)
+        
+        paginator = Paginator(all_tasks, 5)  # Paginate with 5 tasks per page
         page = request.GET.get('page')
-        all_tasks= pagiantor.get_page(page)
+        all_tasks = paginator.get_page(page)
 
-        return render(request, 'tasklist.html',{'all_tasks':all_tasks})
+        return render(request, 'tasklist.html', {'all_tasks': all_tasks})
+# @login_required
+# def tasklist(request):
+    
+#     if request.method =="POST":
+#         form = TaskForm(request.POST or None) 
+#         if form.is_valid():
+#             form.save(commit=False).manage= request.user
+#             form.save()
+#             messages.success(request,("Task Added"))
+#         return redirect(tasklist)
+#     else:
+#         all_tasks = TaskList.objects.filter(manage=request.user)
+#         pagiantor = Paginator(all_tasks, 5)
+#         page = request.GET.get('page')
+#         all_tasks= pagiantor.get_page(page)
+
+#         return render(request, 'tasklist.html',{'all_tasks':all_tasks})
 
 def home(request):
     context ={
